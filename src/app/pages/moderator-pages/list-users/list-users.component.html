@@ -1,0 +1,104 @@
+<div class="card-plain">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6 ml-auto mr-auto">
+                <form>
+                    <div class="input-group no-border">
+                        <input type="text" class="form-control" placeholder="Search..." #search
+                            (keydown.enter)="onSubmit(search.value)">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <i class="nc-icon nc-zoom-split" (click)="onSubmit(search.value)"></i>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <div class="card-header">
+                            <div class="row">
+                                <button class="btn btn-outline-danger btn-round btn-icon mr-2" (click)="onSubmit()"><i
+                                        class="fa fa-times"></i></button>
+                                <h4 class="card-title"><span>Search User: </span>"{{searchValue}}"</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 ml-auto">
+                <div class="card card-plain">
+                    <div class="card-body text-center">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-end" *ngIf="users.length">
+                                <button class="btn btn-primary btn-round btn-icon" *ngIf="filterDirection"
+                                    (click)="filterType()"><i class="fa fa-chevron-up"></i></button>
+                                <button class="btn btn-primary btn-round btn-icon" *ngIf="!filterDirection"
+                                    (click)="filterType()"><i class="fa fa-chevron-down"></i></button>
+                                <div class="col-md-8">
+                                    <div class="dropdown">
+                                        <button aria-expanded="false" aria-haspopup="true" data-toggle="dropdown"
+                                            id="dropdownMenuButton" type="button"
+                                            class="dropdown-toggle btn btn-primary btn-round btn-block"> Filters
+                                        </button>
+                                        <div aria-labelledby="dropdownMenuButton" x-placement="bottom-end"
+                                            class="dropdown-menu dropdown-menu-right"
+                                            style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(1px, 38px, 0px);">
+                                            <div class="dropdown-header">Filter Results Obtained</div>
+                                            <a class="dropdown-item" *ngFor="let item of filters"
+                                                (click)="filterResults(item.id)">{{item.type}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-plain">
+                    <div class="card-body"></div>
+                </div>
+            </div>
+        </div>
+        <h3 class="title mt-4 text-center" *ngIf="!users.length">No users found</h3>
+        <div class="row">
+            <div class="col-md-3 py-3" *ngFor="let item of users">
+                <div class="card card-plain">
+                    <div class="card-body">
+                        <div class="card card-user">
+                            <div class="">
+                                <div class="author">
+                                    <a href="javascript:void(0)" class="disabled" tabindex="-1">
+                                        <img alt="..." class="avatar border-gray" [src]=item.avatar>
+                                        <h5 class="title">{{item.firstname}} {{item.lastname}}</h5>
+                                    </a>
+                                    <p class="description"> @{{item.username}} </p>
+                                    <button class="btn btn-danger btn-round" (click)="removeUser(item.id)">DeleteUser</button>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <hr>
+                                <div class="button-container">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
+                                            <h5>{{item.wins}} <br><small>Wins</small></h5>
+                                        </div>
+                                        <div class="col-lg-3 mr-auto">
+                                            <h5>{{item.losses}} <br><small>Losses</small></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

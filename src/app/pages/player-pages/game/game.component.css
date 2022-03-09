@@ -1,0 +1,99 @@
+
+  .loading {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    font-size: 4em;
+    font-weight: lighter;
+    color: black;
+    margin-top: 15%;
+  }
+  .game .menu-container {
+    height: 100vh;
+    background-color: #2C3E50;
+    padding-right: 0;
+  }
+  .game .grid-container {
+    padding-left: 0;
+  }
+  .grid .container {
+    padding-left: 0;
+  }
+  .grid .container,
+  .grid .grid,
+  .grid .custom-row,
+  .grid .selection-row,
+  .grid .winner-row {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .grid .selection-row,
+  .grid .custom-row,
+  .grid .winner-row {
+    width: 700px;
+    height: 100px;
+  }
+  .grid .winner-row {
+    margin-top: 15%;
+  }
+  .grid .winner-row p {
+    font-size: 2em;
+    color: black;
+    text-align: center;
+  }
+  .grid .winner-row .actions-group {
+    width: 100%;
+  }
+  .grid .winner-row .actions-group .again,
+  .grid .winner-row .actions-group .leave {
+    color: black;
+    font-size: 2em;
+    font-weight: lighter;
+    border-radius: 3px;
+    width: 50%;
+  }
+  .grid .winner-row .actions-group .again {
+    background-color: #4183D7;
+  }
+  .grid .winner-row .actions-group .leave {
+    background-color: #C0392B;
+  }
+  .grid .custom-row {
+    background-color: #053e86;
+  }
+  .grid .case,
+  .grid .selection-case {
+    width: 100px;
+    height: 100px;
+    float: left;
+  }
+  .grid .case .circle,
+  .grid .selection-case .circle {
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+  }
+  .grid .case .circle.red,
+  .grid .selection-case .circle.red {
+    background-color: #C0392B;
+  }
+  .grid .case .circle.white,
+  .grid .selection-case .circle.white {
+    background-color: #E4F1FE;
+  }
+  .grid .case .circle.yellow,
+  .grid .selection-case .circle.yellow {
+    background-color: #F7CA18;
+  }
+  
+  h3{
+    color: black;
+    font-weight: bold;
+  }
+  

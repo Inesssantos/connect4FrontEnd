@@ -1,0 +1,122 @@
+<div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-body ">
+                <div class="row">
+                    <div class="col-5 col-md-4">
+                        <div class="icon-big text-center icon-warning"><i class="nc-icon nc-trophy text-success"></i>
+                        </div>
+                    </div>
+                    <div class="col-7 col-md-8">
+                        <div class="numbers">
+                            <p class="card-category">Wins</p>
+                            <p class="card-title">{{wins}} </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-body ">
+                <div class="row">
+                    <div class="col-5 col-md-4">
+                        <div class="icon-big text-center icon-warning"><i
+                                class="nc-icon nc-simple-remove text-danger"></i></div>
+                    </div>
+                    <div class="col-7 col-md-8">
+                        <div class="numbers">
+                            <p class="card-category">Losses</p>
+                            <p class="card-title">{{losses}} </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-body ">
+                <div class="row">
+                    <div class="col-5 col-md-4">
+                        <div class="icon-big text-center icon-warning"><i
+                                class="nc-icon nc-controller-modern text-warning"></i>
+                        </div>
+                    </div>
+                    <div class="col-7 col-md-8">
+                        <div class="numbers">
+                            <p class="card-category">XP</p>
+                            <p class="card-title">{{xp}} </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-body ">
+                <div class="row">
+                    <div class="col-5 col-md-4">
+                        <div class="icon-big text-center icon-warning"><i class="nc-icon nc-diamond text-primary"></i>
+                        </div>
+                    </div>
+                    <div class="col-7 col-md-8">
+                        <div class="numbers">
+                            <p class="card-category">Level</p>
+                            <p class="card-title">{{level}} </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Wins | Losses -->
+<div class="row row justify-content-center">
+    <div class="card ">
+        <div class="card-header ">
+            <h5 class="card-title">Wins | Losses</h5>
+        </div>
+        <div class="card-body ">
+            <div *ngIf="wins != 0 || losses != 0">
+                <canvas #pieCanvas style="height:20vh; width:40vw"></canvas>
+            </div>
+            <p class="card-category" *ngIf="wins == 0 && losses == 0">No data available to display</p>
+        </div>
+    </div>
+</div>
+
+<!-- Wall of Fame-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title"> Wall of Fame</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="">
+                            <th> Username </th>
+                            <th> Wins </th>
+                            <th> Losses </th>
+                            <th class="text-right"> XP </th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of wallOfFame">
+                                <td> {{item.username}} </td>
+                                <td> {{item.wins}} </td>
+                                <td> {{item.losses}} </td>
+                                <td class="text-right"> {{item.xp}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

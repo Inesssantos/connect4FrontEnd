@@ -1,0 +1,183 @@
+<div *ngIf="startMenu">
+  <div class="row justify-content-center">
+    <button class="btn btn-primary btn-round" id="startGame" (click)="goToWaitingRoom();">Play random match</button>
+  </div>
+  <div class='row justify-content-center '>
+    <div class='col-md-4'>
+      <div class="row " id='friendsOnline'>
+        <div class="card col-md-10">
+          <div class="card-header">
+            <h4 class="card-title">Friend Online</h4>
+            <p class="card-category" *ngIf="!friendsOnlineList.length">There are no friends online </p>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled team-members" *ngFor="let item of friendsOnlineList">
+              <li>
+                <div class="row w-auto">
+                  <div class="col-md-2 col-2">
+                    <div class="avatar">
+                      <img alt="Circle Image" class="img-circle img-no-padding img-responsive" [src]=item.avatar>
+                    </div>
+                  </div>
+                  <div class="col-md-7 col-7">
+                    {{item.firstname}} {{item.lastname}} <br>
+                    <span class="text-muted"><small>{{item.username}}</small></span>
+                  </div>
+                  <div class="col-md-3 col-3 text-right">
+                    <button (click)="gameRequest(item.id)" class="btn btn-outline-info btn-icon">
+                      <i class="nc-icon nc-controller-modern"></i>
+                    </button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row " id='gameRequests'>
+        <div class="card col-md-10">
+          <div class="card-header">
+            <h4 class="card-title">Game requests</h4>
+            <p class="card-category" *ngIf="!gameRequestList.length">There are no game requests </p>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled team-members" *ngFor="let item of gameRequestList">
+              <li>
+                <div class="row w-auto">
+                  <div class="col-md-2 col-2">
+                    <div class="avatar">
+                      <img alt="Circle Image" class="img-circle img-no-padding img-responsive" [src]=item.avatar>
+                    </div>
+                  </div>
+                  <div class="col-md-7 col-7">
+                    {{item.firstname}} {{item.lastname}} <br>
+                    <span class="text-muted"><small>{{item.username}}</small></span>
+                  </div>
+                  <div class="col-md-3 col-3 text-right">
+                    <button (click)="acceptGameRequest(item.id)"
+                      class="btn btn-sm btn-outline-success btn-round btn-icon mx-1">
+                      <i class="fa fa-check"></i>
+                    </button>
+                    <button (click)="refuseGameRequest(item.id)"
+                      class="btn btn-sm btn-outline-danger btn-round btn-icon mx-1">
+                      <i class="fa fa-remove"></i>
+                    </button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='col-md-7'>
+      <div class="card" id='liveGames_'>
+        <div class="card-header">
+          <h4 class="card-title">Games live right now</h4>
+          <p class="card-category" *ngIf="!liveGames.length">There are no games live at the moment </p>
+        </div>
+        <div class="card-body">
+          <ul class="list-unstyled team-members" *ngFor="let item of liveGames">
+            <li>
+              <div class="row w-auto justify-content-center">
+                <div class="col-md-5 col-5 text-indigo">
+                  <i class="nc-icon nc-spaceship"></i>
+                  &nbsp;&nbsp;&nbsp;{{item.usernamePlayer1}} VS. {{item.usernamePlayer2}} <br>
+                </div>
+                <div class="col-md-6 col-5 text-right">
+                  <button class="btn btn-sm btn-youtube" id="watchStream" (click)="watchStream(item.roomName);">Watch stream</button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 
+put here presentation cards -->
+</div>
+<blockquote *ngIf="waitingRoom">
+  <p class="blockquote blockquote-primary justify-content-md-center">
+    IN WAITING ROOM
+  </p>
+</blockquote>
+<div *ngIf="readyCard">
+  <div class="col-md-12">
+    <div class="container-fluid pb-2 text-center">
+      <h3><span>Game Found</span></h3>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-4 my-5" *ngFor="let item of gamePlayers">
+        <div class="card card-user">
+          <div class="">
+            <div class="author">
+              <a href="#">
+                <img alt="..." class="avatar border-gray" [src]=item.avatar>
+                <h5 class="title">{{item.firstname}} {{item.lastname}}</h5>
+              </a>
+              <p class="description"> @{{item.username}} </p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <hr>
+            <div class="button-container">
+              <div class="row">
+                <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
+                  <h5>{{item.wins}} <br><small>Wins</small></h5>
+                </div>
+                <div class="col-lg-3 mr-auto">
+                  <h5>{{item.losses}} <br><small>Losses</small></h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary btn-round" id="startGame" (click)="readyCheck();">Ready?</button>
+</div>
+<div class="game row justify-content-center" *ngIf="boardGame">
+  <div class='row justify-content-md-center'>
+    <div class="col align-self-center">
+      <div>
+        <div class="row" *ngIf="winner === 0">
+          <div class="col-md-12">
+            <div class="text-center">
+              <h3 *ngIf="game.isMyTurn()">Is Your Turn!!</h3>
+              <button class="btn btn-info btn-round btn-block mb-3" (click)="quit();">
+                Quit game
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col align-self-center">
+      <div class="col-md-8">
+        <div class="grid">
+          <div class="container">
+            <div *ngIf="winner === 0">
+              <div class="row selection-row">
+                <div (mouseover)="show(i)" (click)="add(i)" class="selection-case"
+                  *ngFor="let piece of pieces; let i = index">
+                  <div *ngIf="piece.visible" class="circle"
+                    [ngClass]="{'red': game.isPlayerOne(), 'yellow': game.isPlayerTwo()}"></div>
+                </div>
+              </div>
+    
+              <div class="row custom-row" *ngFor="let row of game.grid">
+                <div class="case" (mouseover)="show(i)" (click)="add(i)" *ngFor="let case of row; let i = index">
+                  <div class="circle" [ngClass]="{'white': case.isEmpty(), 'red': case.isRed(), 'yellow': case.isYellow()}">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
